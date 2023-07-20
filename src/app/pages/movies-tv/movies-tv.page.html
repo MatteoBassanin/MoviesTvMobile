@@ -6,7 +6,7 @@
 
 <ion-content>
 
-  <ion-searchbar></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchMovieTv" (ionChange)="getMoviesTv()" search-icon="search-circle"></ion-searchbar>
   <ion-list>
     <ion-item button *ngFor="let item of moviesTv" [routerLink]="[item.imdbID]">
       <ion-label>{{item.Title}}</ion-label>

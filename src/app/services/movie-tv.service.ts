@@ -16,12 +16,16 @@ export class MovieTvService {
 
   constructor(private http: HttpClient) { }
 
-  getMovieTv(): Observable<ApiResult> {
-
-    return this.http.get<ApiResult>(`${environment.baseUrl}/?apikey=${environment.apiKey}&s=blade+runner`);
+  getMovieTv(search: string): Observable<ApiResult> {
+    const searchText = search ? search : 'blade runner';
+    return this.http.get<ApiResult>(`${environment.baseUrl}/?apikey=${environment.apiKey}&s=${searchText}`);
   }
 
   getMovieTvDetails(id: any) {
     return this.http.get(`${environment.baseUrl}/?apikey=${environment.apiKey}&i=${id}`);
+  }
+
+  getPoster(id: any) {
+    return this.http.get(`${environment.imgApi}/?apikey=${environment.apiKey}&i=${id}`)
   }
 }

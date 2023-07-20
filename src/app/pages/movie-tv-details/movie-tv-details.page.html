@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <img src="movieTv.Poster" alt="">
+  <ion-card *ngIf="movieTv">
+    <img src="{{movieTv.Poster}}" />
   </ion-card>
 </ion-content>
