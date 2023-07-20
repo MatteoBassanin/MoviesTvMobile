@@ -1,0 +1,7 @@
+{
+  "name": "MoviesTvMobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
