@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-radio-group value="moviesTvList" [(ngModel)]="selectedValue" (ionChange)="onRadioChange()">
+    <ion-radio value="movie">Movie</ion-radio>
+    <ion-radio value="series">Tv Series</ion-radio>
+  </ion-radio-group>
 
   <ion-searchbar [(ngModel)]="searchMovieTv" (ionChange)="getMoviesTv()" search-icon="search-circle"></ion-searchbar>
   <ion-list>

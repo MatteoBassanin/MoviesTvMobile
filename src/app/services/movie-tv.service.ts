@@ -16,9 +16,10 @@ export class MovieTvService {
 
   constructor(private http: HttpClient) { }
 
-  getMovieTv(search: string): Observable<ApiResult> {
-    const searchText = search ? search : 'blade runner';
-    return this.http.get<ApiResult>(`${environment.baseUrl}/?apikey=${environment.apiKey}&s=${searchText}`);
+  getMovieTv(search: string, type: string): Observable<ApiResult> {
+    const searchText = search ? search : '';
+    const radioResult = type ? type : '';
+    return this.http.get<ApiResult>(`${environment.baseUrl}/?apikey=${environment.apiKey}&s=${searchText}&type=${radioResult}`);
   }
 
   getMovieTvDetails(id: any) {

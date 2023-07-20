@@ -13,6 +13,8 @@ import { environment } from 'src/environments/environment';
 export class MoviesTvPage implements OnInit {
   moviesTv: any = [];
   searchMovieTv: string = '';
+  // valore radio
+  selectedValue: string = '';
 
 
 
@@ -26,14 +28,14 @@ export class MoviesTvPage implements OnInit {
 
   async getMoviesTv() {
     const search = this.searchMovieTv;
-
+    const type = this.selectedValue;
     const loading = await this.loadingCtrl.create({
       message: 'Loading..',
       spinner: 'dots',
     });
     await loading.present();
 
-    this.movieTvService.getMovieTv(search).subscribe(res => {
+    this.movieTvService.getMovieTv(search, type).subscribe(res => {
       loading.dismiss();
       this.moviesTv = res.Search;
       console.log(res);
@@ -42,6 +44,10 @@ export class MoviesTvPage implements OnInit {
 
 
     })
+  }
+  onRadioChange() {
+    console.log('Valore selezionato:', this.selectedValue);
+    // Puoi eseguire altre azioni in base al valore selezionato
   }
 
 
