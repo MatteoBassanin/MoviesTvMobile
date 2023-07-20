@@ -7,6 +7,7 @@ export const environment = {
   apiKey: 'f980ce85',
   baseUrl: 'http://www.omdbapi.com/',
   imgApi: 'http://img.omdbapi.com/',
+  search: ''
 
 };
 

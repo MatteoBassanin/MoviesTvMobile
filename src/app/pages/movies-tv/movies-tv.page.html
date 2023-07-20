@@ -1,13 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>moviesTv</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Movie and tv series:</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">moviesTv</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+
+  <ion-searchbar></ion-searchbar>
+  <ion-list>
+    <ion-item button *ngFor="let item of moviesTv" [routerLink]="[item.imdbID]">
+      <ion-label>{{item.Title}}</ion-label>
+      <img slot="start" src="{{item.Poster}}" alt="">
+    </ion-item>
+  </ion-list>
 </ion-content>
