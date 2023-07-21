@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   apiKey: 'f980ce85',
-  baseUrl: 'http://www.omdbapi.com/',
-  imgApi: 'http://img.omdbapi.com/',
-  // search: ''
+  // non funziona su mobile
+  baseUrl: 'https://www.omdbapi.com/',
+  imgApi: 'https://img.omdbapi.com/',
+  rating: {}
 
 
 };

@@ -11,9 +11,13 @@
   </ion-radio-group>
   <ion-checkbox [(ngModel)]="isOrdered" (ionChange)="getMoviesTv()">Order by Alphabet:</ion-checkbox>
   <ion-radio-group [(ngModel)]="isOrderedByYear" (ionChange)="onRadioChange()">
-    <ion-radio value="false">Ascending</ion-radio>
-    <ion-radio value="true">Descending</ion-radio>
+    <ion-radio value="asc">Ascending</ion-radio>
+    <ion-radio value="desc">Descending</ion-radio>
+    <ion-radio value="none">None</ion-radio>
   </ion-radio-group>
+  <ion-select [(ngModel)]="selectedOption" (ionChange)="getMoviesTv()">
+    <ion-select-option *ngFor="let i of valuesSelect" [value]="i">{{i}} </ion-select-option>
+  </ion-select>
 
   <ion-searchbar [(ngModel)]="searchMovieTv" (ionChange)="getMoviesTv()" search-icon="search-circle"></ion-searchbar>
   <ion-list>
@@ -21,6 +25,10 @@
       <ion-label>{{item.Title}}</ion-label>
       <img slot="start" src="{{item.Poster}}" alt="">
       <ion-label>{{item.Year}}</ion-label>
+
     </ion-item>
+
+
+
   </ion-list>
 </ion-content>

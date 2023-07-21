@@ -7,6 +7,7 @@ export interface ApiResult {
   Search: any[];
 
 
+
 }
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,10 @@ export class MovieTvService {
 
   getPoster(id: any) {
     return this.http.get(`${environment.imgApi}/?apikey=${environment.apiKey}&i=${id}`)
+  }
+
+
+  getMovieTvRating(id: any): Observable<any> {
+    return this.http.get(`${environment.baseUrl}/?apikey=${environment.apiKey}&i=${id}`);
   }
 }
