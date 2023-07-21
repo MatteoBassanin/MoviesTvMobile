@@ -16,6 +16,9 @@ export class MoviesTvPage implements OnInit {
   // valore radio
   selectedValue: string = '';
 
+  isOrdered: boolean = false;
+  isOrderedByYear: any;
+
 
 
 
@@ -36,8 +39,21 @@ export class MoviesTvPage implements OnInit {
     await loading.present();
 
     this.movieTvService.getMovieTv(search, type).subscribe(res => {
+
+
       loading.dismiss();
       this.moviesTv = res.Search;
+
+      if (this.moviesTv && this.isOrdered) {
+        this.moviesTv.sort((a: any, b: any) => a.Title.localeCompare(b.Title));
+      }
+      if (this.moviesTv && this.isOrderedByYear == "false") {
+        this.moviesTv.sort((a: any, b: any) => a.Year.localeCompare(b.Year));
+      }
+      if (this.moviesTv && this.isOrderedByYear == "true") {
+        this.moviesTv.sort((a: any, b: any) => b.Year.localeCompare(a.Year));
+      }
+
       console.log(res);
       console.log(this.moviesTv);
       console.log(this.searchMovieTv)
@@ -46,8 +62,9 @@ export class MoviesTvPage implements OnInit {
     })
   }
   onRadioChange() {
-    console.log('Valore selezionato:', this.selectedValue);
-    // Puoi eseguire altre azioni in base al valore selezionato
+    console.log(this.isOrderedByYear);
+    console.log(this.selectedValue);
+    this.getMoviesTv();
   }
 
 

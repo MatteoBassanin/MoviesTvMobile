@@ -9,12 +9,18 @@
     <ion-radio value="movie">Movie</ion-radio>
     <ion-radio value="series">Tv Series</ion-radio>
   </ion-radio-group>
+  <ion-checkbox [(ngModel)]="isOrdered" (ionChange)="getMoviesTv()">Order by Alphabet:</ion-checkbox>
+  <ion-radio-group [(ngModel)]="isOrderedByYear" (ionChange)="onRadioChange()">
+    <ion-radio value="false">Ascending</ion-radio>
+    <ion-radio value="true">Descending</ion-radio>
+  </ion-radio-group>
 
   <ion-searchbar [(ngModel)]="searchMovieTv" (ionChange)="getMoviesTv()" search-icon="search-circle"></ion-searchbar>
   <ion-list>
     <ion-item button *ngFor="let item of moviesTv" [routerLink]="[item.imdbID]">
       <ion-label>{{item.Title}}</ion-label>
       <img slot="start" src="{{item.Poster}}" alt="">
+      <ion-label>{{item.Year}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
