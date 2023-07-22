@@ -63,6 +63,7 @@ export class MoviesTvPage implements OnInit {
         } else if (this.moviesTv && this.selectedOptionTry == "byAlphabet") {
           this.moviesTv.sort((a: any, b: any) => a.Title.localeCompare(b.Title));
         } else if (this.moviesTv && this.selectedOptionTry == "byRating") {
+
           this.moviesTv.forEach(element => {
             this.movieTvService.getMovieTvRating(element.imdbID).subscribe((res) => {
               console.log(res.imdbRating);
@@ -80,10 +81,23 @@ export class MoviesTvPage implements OnInit {
       } else if (this.moviesTv && this.isOrderedByYear == "desc")
         if (this.moviesTv && this.selectedOptionTry == "byYear") {
           this.moviesTv.sort((a: any, b: any) => b.Year.localeCompare(a.Year));
-        } else if (this.moviesTv && this.selectedOptionTry == "byRating") {
-          this.moviesTv.sort((a: any, b: any) => b.Title.localeCompare(a.Title));
-        } else {
-          this.moviesTv = res.Search;
+          // } else if (this.moviesTv && this.selectedOptionTry == "byRating") {
+          //   this.moviesTv.sort((a: any, b: any) => b.Title.localeCompare(a.Title));
+          // 
+        } else if (this.selectedOptionTry == "byRating") {
+
+          this.moviesTv.forEach(element => {
+            this.movieTvService.getMovieTvRating(element.imdbID).subscribe((res) => {
+              console.log(res.imdbRating);
+              const ratingResult = Math.floor(parseFloat(res.imdbRating))
+              if (ratingResult >= rating) {
+                successRating.push(res);
+                this.moviesTv.sort((a: any, b: any) => b.imdbRating.localeCompare(a.imdbRating));
+              }
+            });
+            this.moviesTv = successRating;
+          })
+
         }
       // if (this.moviesTv && this.isOrdered) {
       //   this.moviesTv.sort((a: any, b: any) => a.Title.localeCompare(b.Title));
@@ -117,25 +131,25 @@ export class MoviesTvPage implements OnInit {
 
       // }
 
-      if (this.selectedOptionTry == "byRating") {
+      // if (this.selectedOptionTry == "byRating") {
 
-        this.moviesTv.forEach(element => {
-          this.movieTvService.getMovieTvRating(element.imdbID).subscribe((res) => {
-            console.log(res.imdbRating);
-            const ratingResult = Math.floor(parseFloat(res.imdbRating))
-            if (ratingResult >= rating) {
-              successRating.push(res);
-              this.moviesTv.sort((a: any, b: any) => b.imdbRating.localeCompare(a.imdbRating));
-            }
-          });
-          this.moviesTv = successRating;
-
-
+      //   this.moviesTv.forEach(element => {
+      //     this.movieTvService.getMovieTvRating(element.imdbID).subscribe((res) => {
+      //       console.log(res.imdbRating);
+      //       const ratingResult = Math.floor(parseFloat(res.imdbRating))
+      //       if (ratingResult >= rating) {
+      //         successRating.push(res);
+      //         this.moviesTv.sort((a: any, b: any) => b.imdbRating.localeCompare(a.imdbRating));
+      //       }
+      //     });
+      //     this.moviesTv = successRating;
 
 
-        })
 
-      }
+
+      //   })
+
+      // }
 
       console.log(res);
       console.log(this.moviesTv);
