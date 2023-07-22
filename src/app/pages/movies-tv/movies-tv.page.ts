@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { Env } from 'ionicons/dist/types/stencil-public-runtime';
 import { MovieTvService } from 'src/app/services/movie-tv.service';
 import { environment } from 'src/environments/environment';
 
@@ -21,13 +20,13 @@ export class MoviesTvPage implements OnInit {
   ratingsMovieTv: any = environment.rating;
 
   isOrdered: boolean = false;
-  isOrderedByYear: any;
+  isOrderedByYear: string = "desc";
 
   valuesSelect: any[] = [];
 
   selectedOption: number = 0;
 
-
+  selectedOptionTry: string = 'byYear';
   constructor(private movieTvService: MovieTvService, private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
@@ -50,20 +49,37 @@ export class MoviesTvPage implements OnInit {
 
     this.movieTvService.getMovieTv(search, type).subscribe(res => {
 
-
       loading.dismiss();
       this.moviesTv = res.Search;
-
-      if (this.moviesTv && this.isOrdered) {
-        this.moviesTv.sort((a: any, b: any) => a.Title.localeCompare(b.Title));
-      }
       if (this.moviesTv && this.isOrderedByYear == "asc") {
-        this.moviesTv.sort((a: any, b: any) => a.Year.localeCompare(b.Year));
-      } else if (this.moviesTv && this.isOrderedByYear == "desc") {
-        this.moviesTv.sort((a: any, b: any) => b.Year.localeCompare(a.Year));
-      } else {
-        this.moviesTv = res.Search;
-      }
+        if (this.moviesTv && this.selectedOptionTry == "byYear") {
+          this.moviesTv.sort((a: any, b: any) => a.Year.localeCompare(b.Year));
+        } else if (this.moviesTv && this.selectedOptionTry == "byAlphabet") {
+          this.moviesTv.sort((a: any, b: any) => a.Title.localeCompare(b.Title));
+        } else {
+          this.moviesTv = res.Search;
+        }
+
+      } else if (this.moviesTv && this.isOrderedByYear == "desc")
+        if (this.moviesTv && this.selectedOptionTry == "byYear") {
+          this.moviesTv.sort((a: any, b: any) => b.Year.localeCompare(a.Year));
+        } else if (this.moviesTv && this.selectedOptionTry == "byAlphabet") {
+          this.moviesTv.sort((a: any, b: any) => b.Title.localeCompare(a.Title));
+        } else {
+          this.moviesTv = res.Search;
+        }
+      // if (this.moviesTv && this.isOrdered) {
+      //   this.moviesTv.sort((a: any, b: any) => a.Title.localeCompare(b.Title));
+      // }
+      // if (this.moviesTv && this.isOrderedByYear == "asc") {
+      //   this.moviesTv.sort((a: any, b: any) => a.Year.localeCompare(b.Year));
+      // } else if (this.moviesTv && this.isOrderedByYear == "desc") {
+      //   this.moviesTv.sort((a: any, b: any) => b.Year.localeCompare(a.Year));
+      // } else {
+      //   this.moviesTv = res.Search;
+      // }
+
+
 
       if (rating > 0) {
         this.moviesTv.forEach(element => {
@@ -73,6 +89,7 @@ export class MoviesTvPage implements OnInit {
 
             if (ratingResult >= rating) {
               successRating.push(res);
+
             }
           });
           this.moviesTv = successRating;

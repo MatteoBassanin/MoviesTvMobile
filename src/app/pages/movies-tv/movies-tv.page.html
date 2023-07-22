@@ -9,15 +9,24 @@
     <ion-radio value="movie">Movie</ion-radio>
     <ion-radio value="series">Tv Series</ion-radio>
   </ion-radio-group>
-  <ion-checkbox [(ngModel)]="isOrdered" (ionChange)="getMoviesTv()">Order by Alphabet:</ion-checkbox>
+  <!-- <ion-checkbox [(ngModel)]="isOrdered" (ionChange)="getMoviesTv()">Order by Alphabet:</ion-checkbox> -->
   <ion-radio-group [(ngModel)]="isOrderedByYear" (ionChange)="onRadioChange()">
     <ion-radio value="asc">Ascending</ion-radio>
     <ion-radio value="desc">Descending</ion-radio>
     <ion-radio value="none">None</ion-radio>
   </ion-radio-group>
   <ion-select [(ngModel)]="selectedOption" (ionChange)="getMoviesTv()">
-    <ion-select-option *ngFor="let i of valuesSelect" [value]="i">{{i}} </ion-select-option>
+    <ion-select-option *ngFor="let i of valuesSelect" [value]="i">{{i}}</ion-select-option>
   </ion-select>
+
+  <ion-select [(ngModel)]="selectedOptionTry" (ionChange)="getMoviesTv()">
+    <ion-select-option value="byAlphabet">Alphabet</ion-select-option>
+    <ion-select-option value="byRating">Rating</ion-select-option>
+    <ion-select-option value="byYear">Year</ion-select-option>
+  </ion-select>
+
+
+
 
   <ion-searchbar [(ngModel)]="searchMovieTv" (ionChange)="getMoviesTv()" search-icon="search-circle"></ion-searchbar>
   <ion-list>
