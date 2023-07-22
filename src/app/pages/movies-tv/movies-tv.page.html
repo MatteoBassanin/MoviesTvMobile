@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content>
+  <ion-toggle (ionChange)="toggleEvent($event)"></ion-toggle>
   <ion-radio-group value="moviesTvList" [(ngModel)]="selectedValue" (ionChange)="onRadioChange()">
     <ion-radio value="movie">Movie</ion-radio>
     <ion-radio value="series">Tv Series</ion-radio>

@@ -37,6 +37,12 @@ export class MoviesTvPage implements OnInit {
 
   async getMoviesTv() {
 
+
+
+
+
+
+
     const search = this.searchMovieTv;
     const type = this.selectedValue;
     const rating = this.selectedOption;
@@ -56,14 +62,25 @@ export class MoviesTvPage implements OnInit {
           this.moviesTv.sort((a: any, b: any) => a.Year.localeCompare(b.Year));
         } else if (this.moviesTv && this.selectedOptionTry == "byAlphabet") {
           this.moviesTv.sort((a: any, b: any) => a.Title.localeCompare(b.Title));
-        } else {
-          this.moviesTv = res.Search;
+        } else if (this.moviesTv && this.selectedOptionTry == "byRating") {
+          this.moviesTv.forEach(element => {
+            this.movieTvService.getMovieTvRating(element.imdbID).subscribe((res) => {
+              console.log(res.imdbRating);
+              const ratingResult = Math.floor(parseFloat(res.imdbRating))
+              if (ratingResult >= rating) {
+                successRating.push(res);
+                this.moviesTv.sort((a: any, b: any) => a.imdbRating.localeCompare(b.imdbRating));
+              }
+            });
+            this.moviesTv = successRating;
+          })
+
         }
 
       } else if (this.moviesTv && this.isOrderedByYear == "desc")
         if (this.moviesTv && this.selectedOptionTry == "byYear") {
           this.moviesTv.sort((a: any, b: any) => b.Year.localeCompare(a.Year));
-        } else if (this.moviesTv && this.selectedOptionTry == "byAlphabet") {
+        } else if (this.moviesTv && this.selectedOptionTry == "byRating") {
           this.moviesTv.sort((a: any, b: any) => b.Title.localeCompare(a.Title));
         } else {
           this.moviesTv = res.Search;
@@ -81,18 +98,38 @@ export class MoviesTvPage implements OnInit {
 
 
 
-      if (rating > 0) {
+      // if (rating > 0) {
+      //   this.moviesTv.forEach(element => {
+      //     this.movieTvService.getMovieTvRating(element.imdbID).subscribe((res) => {
+      //       console.log(res.imdbRating);
+      //       const ratingResult = Math.floor(parseFloat(res.imdbRating))
+
+      //       if (ratingResult >= rating) {
+      //         successRating.push(res);
+
+      //       }
+      //     });
+      //     this.moviesTv = successRating;
+
+
+
+      //   })
+
+      // }
+
+      if (this.selectedOptionTry == "byRating") {
+
         this.moviesTv.forEach(element => {
           this.movieTvService.getMovieTvRating(element.imdbID).subscribe((res) => {
             console.log(res.imdbRating);
             const ratingResult = Math.floor(parseFloat(res.imdbRating))
-
             if (ratingResult >= rating) {
               successRating.push(res);
-
+              this.moviesTv.sort((a: any, b: any) => b.imdbRating.localeCompare(a.imdbRating));
             }
           });
           this.moviesTv = successRating;
+
 
 
 
@@ -121,6 +158,16 @@ export class MoviesTvPage implements OnInit {
     this.valuesSelect = selectArray;
 
   }
+
+  toggleEvent(event: any) {
+    if (event.detail.checked) {
+      document.body.setAttribute('color-theme', 'dark');
+    } else {
+      document.body.setAttribute('color-theme', 'light');
+    }
+  }
+
+
 }
 
 
