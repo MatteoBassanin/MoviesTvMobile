@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  apiKey: 'f980ce85',
-  // non funziona su mobile
-  baseUrl: 'https://www.omdbapi.com/',
-  imgApi: 'https://img.omdbapi.com/',
-  rating: {}
+  // apiKey: 'f980ce85',
+
+  // baseUrl: 'https://www.omdbapi.com/',
+  // imgApi: 'https://img.omdbapi.com/',
+  // rating: {}
 
 
 };

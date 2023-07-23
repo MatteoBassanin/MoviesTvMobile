@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieTvService } from 'src/app/services/movie-tv.service';
-import { environment } from 'src/environments/environment';
+
 
 
 @Component({
@@ -20,9 +20,9 @@ export class MovieTvDetailsPage implements OnInit {
     this.movieTvService.getMovieTvDetails(id).subscribe((res) => {
       console.log(res);
       this.movieTv = res;
-      environment.rating = res;
+      // environment.rating = res;
       console.log(this.movieTv);
-      console.log(environment.rating)
+      // console.log(environment.rating)
 
     })
   }

@@ -1,0 +1,50 @@
+.text_center {
+    text-align: center;
+}
+
+.margin_auto {
+    margin: auto;
+}
+
+
+ion-card {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 30px;
+
+    .card_img {
+        width: 100%;
+    }
+}
+
+.d_flex {
+    display: flex;
+}
+
+.radio_text {
+    font-size: 25px;
+}
+
+.ms_container {
+    padding: 10px;
+}
+
+
+.ms_wrapper {
+    padding: 10px;
+}
+
+.ms_borded {
+
+    border: 1px solid black;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.ms_wrapper_radio {
+    padding: 0 10px;
+}
+
+.w_100 {
+    width: 100%;
+}

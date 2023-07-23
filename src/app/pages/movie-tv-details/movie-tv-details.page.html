@@ -9,6 +9,16 @@
 
 <ion-content>
   <ion-card *ngIf="movieTv">
-    <img src="{{movieTv.Poster}}" />
+    <img src="{{movieTv.Poster}}" alt="{{movieTv.Title}}" />
+    <h2>{{movieTv.Title}}</h2>
+    <p>Plot : {{movieTv.Plot}}</p>
+    <p>Rating : {{movieTv.imdbRating}}</p>
+    <p>Release Year: {{movieTv.Year}}</p>
+    <p>Language : {{movieTv.Language}}</p>
+    <p>Genre : {{movieTv.Genre}}</p>
+    <p>Director : {{movieTv.Director}}</p>
+    <p>Actors : {{movieTv.Actors}}</p>
+    <p>Awards : {{movieTv.Awards}}</p>
+    <p>Box office : {{movieTv.BoxOffice}}</p>
   </ion-card>
 </ion-content>

@@ -1,44 +1,111 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Movie and tv series:</ion-title>
+    <ion-title slot="start">Movie and Tv Series</ion-title>
+    <div class="ms_container" slot="end">
+      <ion-label>Dark/Light</ion-label>
+      <ion-toggle (ionChange)="toggleEvent($event)"></ion-toggle>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-toggle (ionChange)="toggleEvent($event)"></ion-toggle>
-  <ion-radio-group value="moviesTvList" [(ngModel)]="selectedValue" (ionChange)="onRadioChange()">
-    <ion-radio value="movie">Movie</ion-radio>
-    <ion-radio value="series">Tv Series</ion-radio>
-  </ion-radio-group>
-  <!-- <ion-checkbox [(ngModel)]="isOrdered" (ionChange)="getMoviesTv()">Order by Alphabet:</ion-checkbox> -->
-  <ion-radio-group [(ngModel)]="isOrderedByYear" (ionChange)="onRadioChange()">
-    <ion-radio value="asc">Ascending</ion-radio>
-    <ion-radio value="desc">Descending</ion-radio>
-    <ion-radio value="none">None</ion-radio>
-  </ion-radio-group>
-  <ion-select [(ngModel)]="selectedOption" (ionChange)="getMoviesTv()">
-    <ion-select-option *ngFor="let i of valuesSelect" [value]="i">{{i}}</ion-select-option>
-  </ion-select>
+<ion-content color="light" id="jumbo">
 
-  <ion-select [(ngModel)]="selectedOptionTry" (ionChange)="getMoviesTv()">
-    <ion-select-option value="byAlphabet">Alphabet</ion-select-option>
-    <ion-select-option value="byRating">Rating</ion-select-option>
-    <ion-select-option value="byYear">Year</ion-select-option>
-  </ion-select>
+  <div class="ms_container ion-text-center">
+    <ion-radio-group value="moviesTvList" [(ngModel)]="selectedValue" (ionChange)="onRadioChange()"
+      class="d_flex ion-justify-content-center ion-align-items-center ">
+      <div class="ms_wrapper">
+        <div class="radio_text">Movie</div>
+        <ion-radio value="movie"></ion-radio><span class="radio_text"></span>
+      </div>
+      <div class="ms_wrapper">
+        <div class="radio_text">Tv Series</div>
+        <ion-radio value="series"></ion-radio><span class="radio_text"></span>
+      </div>
+    </ion-radio-group>
+  </div>
+  <div class="ms_container ion-text-center d_flex ion-align-items-center ion-justify-content-around">
+    <div class="ms_container d_flex ion-align-items-center ms_borded ">
+      <!-- <div class="ms_label">Sort by</div> -->
+      <div class="ms_container_select">
+        <ion-select [(ngModel)]="selectedOptionTry" (ionChange)="getMoviesTv()" slot="end">
+          <ion-select-option value="byAlphabet">Alphabet</ion-select-option>
+          <ion-select-option value="byRating">Rating</ion-select-option>
+          <ion-select-option value="byYear">Year</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+    <ion-radio-group [(ngModel)]="isOrderedByYear" (ionChange)="onRadioChange()"
+      class="ion-justify-content-start d_flex ion-align-items-center">
+      <div class="ms_wrapper_radio">
+        <div class="ms_label_wrapper">
+          <ion-label>Descending</ion-label>
+        </div>
+        <ion-radio value="desc"></ion-radio>
+      </div>
+      <div class="ms_wrapper_radio">
+        <div class="ms_label_wrapper">
+          <ion-label for="asc">Ascending</ion-label>
+        </div>
+        <ion-radio value="asc" id="asc"></ion-radio>
+      </div>
+      <div class="ms_wrapper_radio">
+        <div class="ms_label_wrapper">
+          <ion-label>Default</ion-label>
+        </div>
+        <ion-radio value="none"></ion-radio>
+      </div>
+    </ion-radio-group>
+  </div>
+  <!-- <ion-checkbox [(ngModel)]="isOrdered" (ionChange)="getMoviesTv()">Order by Alphabet:</ion-checkbox> -->
+  <!-- <ion-select [(ngModel)]="selectedOption" (ionChange)="getMoviesTv()">
+    <ion-select-option *ngFor="let i of valuesSelect" [value]="i">{{i}}</ion-select-option>
+  </ion-select> -->
+
 
 
 
 
   <ion-searchbar [(ngModel)]="searchMovieTv" (ionChange)="getMoviesTv()" search-icon="search-circle"></ion-searchbar>
-  <ion-list>
+  <!-- <ion-list *ngIf="moviesTv">
     <ion-item button *ngFor="let item of moviesTv" [routerLink]="[item.imdbID]">
-      <ion-label>{{item.Title}}</ion-label>
-      <img slot="start" src="{{item.Poster}}" alt="">
-      <ion-label>{{item.Year}}</ion-label>
-
+      <h2>{{item.Title}}</h2>
+      <img *ngIf="item.Poster !== 'N/A'" slot="start" src="{{item.Poster}}" alt="item.Title">
+      <img *ngIf="item.Poster == 'N/A'" src="../../../assets/noImage.jpeg" alt="">
+      <div>{{item.Year}}</div>
     </ion-item>
+  </ion-list> -->
+  <div class="ms_card_container " *ngIf="moviesTv">
+    <ion-card button *ngFor="let item of moviesTv" [routerLink]="[item.imdbID]">
+      <div class="ms_container_img text_center">
+        <img *ngIf="item.Poster !== 'N/A'" src="{{item.Poster}}" alt="item.Title" class="card_img">
+        <img *ngIf="item.Poster == 'N/A'" src="../../../assets/noImage.jpeg" alt="" class="card_img">
+      </div>
+      <ion-card-header>
+        <ion-card-title>{{item.Title}}</ion-card-title>
+        <ion-card-subtitle>{{item.Type}}</ion-card-subtitle>
+      </ion-card-header>
 
+      <ion-card-content>
+        {{item.Year}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!moviesTv && !feedbackError " class="d_flex ion-justify-content-center">
+    <img class="w_100" src="../../../assets/welcome.jpg" alt="">
+    <!-- <h2 class="ms_title">No search was performed</h2> -->
+  </div>
+  <h4 *ngIf="feedbackError.length>0">{{feedbackError}}</h4>
+  <!-- <ion-button (click)="goBack()">
+    <ion-icon slot="start" name="chevron-back"></ion-icon>
+    Back
+  </ion-button>
 
-
-  </ion-list>
+  <ion-button (click)="goForward()">
+    <ion-icon slot="start" name="chevron-forward"></ion-icon>
+    Forward
+  </ion-button> -->
+  <!-- <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles"
+      LoadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
 </ion-content>
