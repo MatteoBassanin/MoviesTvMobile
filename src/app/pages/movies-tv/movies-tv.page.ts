@@ -29,6 +29,7 @@ export class MoviesTvPage implements OnInit {
   selectedOption: number = 0;
   page: number = 1;
   selectedOptionTry: string = 'byYear';
+  selectDarkLight: boolean = true;
   constructor(private movieTvService: MovieTvService, private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
@@ -184,8 +185,12 @@ export class MoviesTvPage implements OnInit {
   toggleEvent(event: any) {
     if (event.detail.checked) {
       document.body.setAttribute('color-theme', 'dark');
+      this.selectDarkLight = false;
+      console.log(this.selectDarkLight);
     } else {
       document.body.setAttribute('color-theme', 'light');
+      this.selectDarkLight = true;
+      console.log(this.selectDarkLight);
     }
   }
 

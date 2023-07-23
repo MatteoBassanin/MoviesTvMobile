@@ -34,12 +34,26 @@ ion-card {
     padding: 0 10px;
 }
 
+// .ms_borded {
+//     height: 40px;
+//     min-width: 50px;
+//     border-radius: 20px;
+// }
 .ms_borded {
-
-    border: 1px solid black;
     height: 40px;
     min-width: 50px;
     border-radius: 20px;
+    border: 1px solid;
+}
+
+.ms_borded_dark {
+    border: 1px solid white;
+
+}
+
+.ms_borded_light {
+    border: black;
+
 }
 
 .ms_wrapper_radio {

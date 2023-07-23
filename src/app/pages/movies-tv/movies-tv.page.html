@@ -56,14 +56,18 @@
         <ion-radio value="none"></ion-radio>
       </div>
     </ion-radio-group> -->
-    <div class="ms_container_select d_flex ion-align-items-center ms_borded pdg_5">
+    <div class="ms_container_select d_flex ion-align-items-center ms_borded pdg_5"
+      [class.ms_borded_dark]="!selectDarkLight">
+
+
       <ion-select [(ngModel)]="isOrderedByYear" (ionChange)="getMoviesTv()" slot="end">
         <ion-select-option value="asc">Ascending</ion-select-option>
         <ion-select-option value="desc">Descending</ion-select-option>
         <ion-select-option value="none">Default</ion-select-option>
       </ion-select>
+
     </div>
-    <div class="ms_container d_flex ion-align-items-center ms_borded ">
+    <div class="ms_container d_flex ion-align-items-center ms_borded" [class.ms_borded_dark]="!selectDarkLight">
       <!-- <div class="ms_label">Sort by</div> -->
       <div class="ms_container_select">
         <ion-select [(ngModel)]="selectedOptionTry" (ionChange)="getMoviesTv()" slot="end">
