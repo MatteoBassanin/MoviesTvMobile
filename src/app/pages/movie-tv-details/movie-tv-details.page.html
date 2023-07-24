@@ -12,15 +12,17 @@
     <div class="ms_img_wrapper">
       <img src="{{movieTv.Poster}}" alt="{{movieTv.Title}}" />
     </div>
-    <h2>{{movieTv.Title}}</h2>
-    <p>Plot : {{movieTv.Plot}}</p>
-    <p>Rating : {{movieTv.imdbRating}}</p>
-    <p>Release Year: {{movieTv.Year}}</p>
-    <p>Language : {{movieTv.Language}}</p>
-    <p>Genre : {{movieTv.Genre}}</p>
-    <p>Director : {{movieTv.Director}}</p>
-    <p>Actors : {{movieTv.Actors}}</p>
-    <p>Awards : {{movieTv.Awards}}</p>
-    <p>Box office : {{movieTv.BoxOffice}}</p>
+    <div class="ms_text_info">
+      <h2>{{movieTv.Title}}</h2>
+      <p> <span class="ms_text_title">Plot : </span>{{movieTv.Plot}}</p>
+      <p> <span class="ms_text_title">Rating : </span>{{movieTv.imdbRating}}</p>
+      <p> <span class="ms_text_title">Release Year: </span>{{movieTv.Year}}</p>
+      <p> <span class="ms_text_title">Language : </span>{{movieTv.Language}}</p>
+      <p> <span class="ms_text_title">Genre : </span>{{movieTv.Genre}}</p>
+      <p> <span class="ms_text_title">Director : </span>{{movieTv.Director}}</p>
+      <p> <span class="ms_text_title">Actors : </span>{{movieTv.Actors}}</p>
+      <p><span class="ms_text_title">Awards : </span>{{movieTv.Awards}}</p>
+      <p><span class="ms_text_title">Box office : </span>{{movieTv.BoxOffice}}</p>
+    </div>
   </ion-card>
 </ion-content>
