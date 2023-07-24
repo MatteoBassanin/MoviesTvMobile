@@ -12,7 +12,6 @@ import { MovieTvService } from 'src/app/services/movie-tv.service';
 export class MovieTvDetailsPage implements OnInit {
   movieTv: any = null;
 
-
   constructor(private route: ActivatedRoute, private movieTvService: MovieTvService) { }
 
   ngOnInit() {
@@ -20,10 +19,7 @@ export class MovieTvDetailsPage implements OnInit {
     this.movieTvService.getMovieTvDetails(id).subscribe((res) => {
       console.log(res);
       this.movieTv = res;
-      // environment.rating = res;
       console.log(this.movieTv);
-      // console.log(environment.rating)
-
     })
   }
 

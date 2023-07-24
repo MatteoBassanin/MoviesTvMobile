@@ -6,9 +6,6 @@ import { Observable } from 'rxjs';
 export interface ApiResult {
   Search: any[];
   Error: string;
-  // Response: string;
-
-
 }
 @Injectable({
   providedIn: 'root'
@@ -34,7 +31,6 @@ export class MovieTvService {
   getPoster(id: any) {
     return this.http.get(`${this.imgApi}/?apikey=${this.apiKey}&i=${id}`)
   }
-
 
   getMovieTvRating(id: any): Observable<any> {
     return this.http.get(`${this.baseUrl}/?apikey=${this.apiKey}&i=${id}`);
