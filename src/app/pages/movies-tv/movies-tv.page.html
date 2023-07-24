@@ -2,16 +2,17 @@
   <ion-toolbar color="primary">
     <ion-title slot="start">Movies and TV Series</ion-title>
     <div class="ms_container" slot="end">
-      <ion-label>Dark/Light</ion-label>
+      <ion-icon name="sunny-outline"></ion-icon>
       <ion-toggle (ionChange)="toggleEvent($event)"></ion-toggle>
+      <ion-icon name="moon-outline"></ion-icon>
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="light" id="jumbo">
 
-  <div class="ms_container ion-text-center">
-    <!-- <ion-radio-group value="moviesTvList" [(ngModel)]="selectedValue" (ionChange)="onRadioChange()"
+  <!-- <div class="ms_container ion-text-center"> -->
+  <!-- <ion-radio-group value="moviesTvList" [(ngModel)]="selectedValue" (ionChange)="onRadioChange()"
       class="d_flex ion-justify-content-center ion-align-items-center ">
       <div class="ms_wrapper">
         <div class="radio_text">Movie</div>
@@ -22,7 +23,7 @@
         <ion-radio value="series"></ion-radio><span class="radio_text"></span>
       </div>
     </ion-radio-group> -->
-  </div>
+  <!-- </div> -->
   <div class="ms_container ion-text-center d_flex ion-align-items-center ion-justify-content-around">
     <ion-radio-group value="moviesTvList" [(ngModel)]="selectedValue" (ionChange)="onRadioChange()"
       class="d_flex ion-justify-content-center ion-align-items-center ">
@@ -56,7 +57,7 @@
         <ion-radio value="none"></ion-radio>
       </div>
     </ion-radio-group> -->
-    <div class="ms_container_select d_flex ion-align-items-center ms_borded pdg_5"
+    <div class="ms_container_select d_flex ion-align-items-center ms_borded pdg_10"
       [class.ms_borded_dark]="!selectDarkLight">
 
 
@@ -87,8 +88,7 @@
 
 
 
-  <ion-searchbar [(ngModel)]="searchMovieTv" (ionChange)="getMoviesTv()" search-icon="search-circle"
-    color="primary"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchMovieTv" (ionChange)="getMoviesTv()" color="primary" class="w_80"></ion-searchbar>
   <!-- <ion-list *ngIf="moviesTv">
     <ion-item button *ngFor="let item of moviesTv" [routerLink]="[item.imdbID]">
       <h2>{{item.Title}}</h2>
@@ -97,19 +97,22 @@
       <div>{{item.Year}}</div>
     </ion-item>
   </ion-list> -->
-  <div class="ms_card_container " *ngIf="moviesTv">
+  <div class="ms_card_container " id="big_wrapper" *ngIf="moviesTv">
     <ion-card button *ngFor="let item of moviesTv" [routerLink]="[item.imdbID]">
-      <div class="ms_container_img text_center">
+      <div class="ms_container_img">
         <img *ngIf="item.Poster !== 'N/A'" src="{{item.Poster}}" alt="item.Title" class="card_img">
         <img *ngIf="item.Poster == 'N/A'" src="../../../assets/noImage.jpeg" alt="" class="card_img">
       </div>
       <ion-card-header>
         <ion-card-title>{{item.Title}}</ion-card-title>
-        <ion-card-subtitle>{{item.Type}}</ion-card-subtitle>
+        <!-- <ion-card-subtitle>{{item.Type}}</ion-card-subtitle> -->
       </ion-card-header>
 
       <ion-card-content>
-        {{item.Year}}
+        <div class="ms_year">
+          {{item.Year}}
+
+        </div>
       </ion-card-content>
     </ion-card>
   </div>

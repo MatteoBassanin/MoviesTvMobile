@@ -50,15 +50,15 @@ export class MoviesTvPage implements OnInit {
     const type = this.selectedValue;
     const rating = this.selectedOption;
     const successRating: any[] = [];
-    const loading = await this.loadingCtrl.create({
-      message: 'Loading..',
-      spinner: 'dots',
-    });
-    await loading.present();
+    // const loading = await this.loadingCtrl.create({
+    //   message: 'Loading..',
+    //   spinner: 'dots',
+    // });
+    // await loading.present();
 
     this.movieTvService.getMovieTv(page, search, type).subscribe(res => {
 
-      loading.dismiss();
+      // loading.dismiss();
       this.moviesTv = res.Search;
 
       // event?.target.complete();

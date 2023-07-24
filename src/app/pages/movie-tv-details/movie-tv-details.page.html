@@ -9,7 +9,9 @@
 
 <ion-content>
   <ion-card *ngIf="movieTv">
-    <img src="{{movieTv.Poster}}" alt="{{movieTv.Title}}" />
+    <div class="ms_img_wrapper">
+      <img src="{{movieTv.Poster}}" alt="{{movieTv.Title}}" />
+    </div>
     <h2>{{movieTv.Title}}</h2>
     <p>Plot : {{movieTv.Plot}}</p>
     <p>Rating : {{movieTv.imdbRating}}</p>
