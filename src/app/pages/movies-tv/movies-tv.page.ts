@@ -12,7 +12,7 @@ export class MoviesTvPage implements OnInit {
   searchMovieTv: string = '';
   selectedValue: string = '';
   isOrdered: boolean = false;
-  isOrderedByYear: string = "desc";
+  isOrderedBy: string = "desc";
   feedbackError: string = '';
   valuesSelect: any[] = [];
   selectedOption: number = 0;
@@ -38,7 +38,7 @@ export class MoviesTvPage implements OnInit {
       this.moviesTv = res.Search;
 
       if (this.moviesTv) {
-        switch (this.isOrderedByYear) {
+        switch (this.isOrderedBy) {
           case "asc":
             this.sortMoviesTv(this.selectedOptionTry, "asc");
             break;
@@ -62,7 +62,7 @@ export class MoviesTvPage implements OnInit {
     })
   }
   onRadioChange() {
-    console.log(this.isOrderedByYear);
+    console.log(this.isOrderedBy);
     this.getMoviesTv();
   }
 
